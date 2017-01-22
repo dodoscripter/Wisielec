@@ -1,0 +1,58 @@
+//Powinno wyświetlać prompt'y i alert'y ale nie działa ;(
+<!DOCTYPE html>
+<html>
+<head>
+<title>Wisielec!</title>	
+</head>
+<body>
+<h1>Wisielec!</h1>
+<script>
+//Tablica ze słowami
+var słowa = [
+"javascript"
+"igor"
+"linux"
+"komputer"
+];
+
+//Losowanie słowa
+var słowo = słowa[Math.floor(Math.random() * słowa.length)];
+
+//Konfiguracja tablicy z odpowiedziami
+var odpowiedzi = [];
+for (var i = 0; i < słowo.length; i++) {
+odpowiedzi[i] = "_";	
+}	
+
+var pozostałeLitery = słowo.length
+
+//Główna pętla gry
+while (pozostałeLitery > 0) {
+//Pokaż graczowi bieżący wynik	
+alert(odpowiedzi.join(" "));
+
+//Wczytaj strzał gracza
+var strzał = prompt("Podaj litere, lub kliknij anuluj, aby zakończyć grę");
+if (strzał === null) {
+//Wyjdź z głównej pętli gry
+break;
+} else if (strzał.length !== 1) {
+alert("Podaj tylko jedna litere!");
+} else {
+//Zaktualizuj stan gry na podstawie strzału
+for (var j = 0; j < słowo.length; j++) {
+if (słowo[j] === strzał) {
+odpowiedzi[j] = strzał;
+pozostałeLitery--;
+  }
+ }	
+}
+//Koniec głównej pętli gry
+}
+
+//Gratulacje i odpowiedź
+alert(odpowiedzi.join(" "));
+alert("Dobra robota! Szukane słowo to " + słowo);
+</script>
+</body>
+</html>
